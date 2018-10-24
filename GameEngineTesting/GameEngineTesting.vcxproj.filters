@@ -45,6 +45,9 @@
     <ClCompile Include="Win32Window.cpp">
       <Filter>Source Files\Window\Win32</Filter>
     </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NonCopyable.hpp">

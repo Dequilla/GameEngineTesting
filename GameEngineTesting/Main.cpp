@@ -1,11 +1,16 @@
-#include "WindowImpl.hpp"
 #include <iostream>
+
+#include "Window.hpp"
 
 int main(int argc, char** argv)
 {
-	hs::priv::WindowImpl* window = hs::priv::WindowImpl::create(1280, 720, hs::String(L"Hello world!"), 1);
+	hs::Window window(1280, 720, L"Hello world!", 1);
 
-	std::cin.get();
-
-	delete window;
+	while (true)
+	{
+		hs::Event e;
+		while (window.pollEvents(e))
+		{
+		}
+	}
 }
