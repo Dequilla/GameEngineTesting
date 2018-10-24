@@ -1,5 +1,7 @@
 #pragma once
 #include <Windows.h>
+#include <unordered_map>
+
 #include "WindowImpl.hpp"
 
 namespace hs
@@ -29,6 +31,9 @@ namespace hs
 		private:
 			HINSTANCE m_systemHandle;
 			HWND m_windowHandle;
+
+			static std::unordered_map<HWND, Win32Window*> m_windowsCreated;
+			static Win32Window* getWindowFromhandle(HWND winHandle);
 
 			bool registerWindowClass();
 

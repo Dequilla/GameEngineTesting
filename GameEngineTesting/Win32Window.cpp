@@ -2,10 +2,11 @@
 
 hs::priv::Win32Window::Win32Window(uint32 width, uint32 height, String title, uint32 style)
 {
+	// Retrieves the application base process handle
 	m_systemHandle = GetModuleHandle(nullptr);
 
 	bool isRegistered = this->registerWindowClass();
-	
+
 	m_windowHandle = CreateWindowExW(
 		NULL,
 		this->className,
@@ -32,10 +33,15 @@ hs::priv::Win32Window::Win32Window(uint32 width, uint32 height, String title, ui
 	}
 
 	this->setVisible(true);
+
+	// Keep track of all our windows
+	m_windowsCreated.emplace(m_windowHandle, this);
 }
 
 hs::priv::Win32Window::~Win32Window()
 {
+	// This window is being deleted, remove from our tracked windows.
+	hs::priv::Win32Window::m_windowsCreated.erase(m_windowHandle);
 }
 
 void hs::priv::Win32Window::setPosition(uint32 x, uint32 y)
@@ -79,6 +85,23 @@ void hs::priv::Win32Window::processEvents()
 	}
 }
 
+// Properly declar and define static variable
+std::unordered_map<HWND, hs::priv::Win32Window*> hs::priv::Win32Window::m_windowsCreated;
+
+hs::priv::Win32Window* hs::priv::Win32Window::getWindowFromhandle(HWND winHandle)
+{
+	try
+	{
+		return hs::priv::Win32Window::m_windowsCreated.at(winHandle);
+	}
+	catch(const std::out_of_range& exc)
+	{
+		return nullptr;
+	}
+
+	return nullptr;
+}
+
 bool hs::priv::Win32Window::registerWindowClass()
 {
 	WNDCLASSEXW windowClassExW;
@@ -113,8 +136,23 @@ bool hs::priv::Win32Window::registerWindowClass()
 
 LRESULT CALLBACK hs::priv::Win32Window::WndProc(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	if (message == WM_CLOSE)
-		return 0; // We want to handle closing the window to not leak and lose resources
+	// TODO: Needs revision, might not work
+	// TODO: Give window processEvents procedure
+	// Warning: Do not keep this pointer around. It will be deleted when the window is.
+	hs::priv::Win32Window* window = hs::priv::Win32Window::getWindowFromhandle(handle);
 
+	if (window != nullptr)
+	{
+		if (message == WM_CLOSE)
+		{
+			hs::Event e;
+			e.type = hs::Event::Close;
+			window->pushEvent(e);
+
+			// We want to handle closing the window to not leak and lose resources
+			return 0;
+		}
+	}
+	
 	return DefWindowProcW(handle, message, wParam, lParam);
 }

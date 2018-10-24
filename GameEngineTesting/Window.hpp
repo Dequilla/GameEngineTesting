@@ -9,11 +9,17 @@ namespace hs
 
 	class Window
 	{
-		hs::priv::WindowImpl* m_implementation;
+		hs::priv::WindowImpl* m_implementation = nullptr;
 
 	public:
 		Window(uint32 width, uint32 height, String title, uint32 style);
 		~Window();
+
+		void create(uint32 width, uint32 height, String title, uint32 style);
+
+		void close();
+		
+		bool isOpen();
 
 		bool pollEvents(Event& e);
 	};
