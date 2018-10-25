@@ -168,11 +168,13 @@ void hs::priv::Win32Window::processEvent(UINT msg, WPARAM wParam, LPARAM lParam)
 	// https://docs.microsoft.com/sv-se/windows/desktop/inputdev/mouse-input-notifications
 	// TODO: WM_SIZING
 
+	hs::Event e;
 	switch (msg)
 	{
 	case WM_KEYDOWN:
 		// Translate key
 		break;
+
 	case WM_KEYUP:
 		// Translate key
 		break;
@@ -183,28 +185,61 @@ void hs::priv::Win32Window::processEvent(UINT msg, WPARAM wParam, LPARAM lParam)
 	case WM_MOUSEWHEEL:
 		break;
 	
-	case WM_LBUTTONDOWN:
-		break;
 	case WM_LBUTTONUP:
+		e.type = Event::MouseReleased;
+		e.mouse.button.code = Event::MouseButton::LEFT;
+		this->pushEvent(e);
+		break;
+
+	case WM_MBUTTONUP:
+		e.type = Event::MouseReleased;
+		e.mouse.button.code = Event::MouseButton::MIDDLE;
+		this->pushEvent(e);
+		break;
+
+	case WM_RBUTTONUP:
+		e.type = Event::MouseReleased;
+		e.mouse.button.code = Event::MouseButton::RIGHT;
+		this->pushEvent(e);
+		break;
+
+	case WM_XBUTTONUP:
+		e.type = Event::MouseReleased;
+		if(GET_XBUTTON_WPARAM(wParam) == XBUTTON1)
+			e.mouse.button.code = Event::MouseButton::EXTRA1;
+		else
+			e.mouse.button.code = Event::MouseButton::EXTRA2;
+		this->pushEvent(e);
+		break;
+
+	case WM_LBUTTONDOWN:
+		e.type = Event::MousePressed;
+		e.mouse.button.code = Event::MouseButton::LEFT;
+		this->pushEvent(e);
 		break;
 
 	case WM_MBUTTONDOWN:
-		break;
-	case WM_MBUTTONUP:
+		e.type = Event::MousePressed;
+		e.mouse.button.code = Event::MouseButton::MIDDLE;
+		this->pushEvent(e);
 		break;
 
 	case WM_RBUTTONDOWN:
-		break;
-	case WM_RBUTTONUP:
+		e.type = Event::MousePressed;
+		e.mouse.button.code = Event::MouseButton::RIGHT;
+		this->pushEvent(e);
 		break;
 
 	case WM_XBUTTONDOWN:
+		e.type = Event::MousePressed;
+		if (GET_XBUTTON_WPARAM(wParam) == XBUTTON1)
+			e.mouse.button.code = Event::MouseButton::EXTRA1;
+		else
+			e.mouse.button.code = Event::MouseButton::EXTRA2;
+		this->pushEvent(e);
 		break;
-	case WM_XBUTTONUP:
-		break;
-	
+
 	case WM_CLOSE:
-		hs::Event e;
 		e.type = hs::Event::Close;
 		this->pushEvent(e);
 		break;
