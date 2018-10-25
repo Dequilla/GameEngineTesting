@@ -31,5 +31,7 @@ bool hs::Window::isOpen()
 
 bool hs::Window::pollEvents(Event& e)
 {
-	return m_implementation->popEvent(e);
+	if(this->m_implementation != nullptr)
+		return m_implementation->popEvent(e);
+	return false;
 }

@@ -8,8 +8,8 @@
 //	 - Switch to the right dev-branch
 //	 - Commit stable code
 //
-//	CURRENT ISSUES
-//	 - Event POP function breaks, for some reason the event queue is popped when empty
+//	CURRENT KNOWN ISSUES
+//	 - None
 //
 ////////////////////////////////////////////
 
