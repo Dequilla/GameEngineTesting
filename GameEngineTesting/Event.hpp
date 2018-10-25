@@ -6,14 +6,20 @@ namespace hs
 	struct Event
 	{
 	public:
+		struct ResizeEvent
+		{
+			bool isBeingResized = false;
+			
+			uint32 width = 0;
+			uint32 height = 0; 
+		};
+
 		struct KeyEvent
 		{
-
 		};
 
 		struct MouseMoveEvent
 		{
-		
 		};
 
 		enum EventType
@@ -22,6 +28,7 @@ namespace hs
 			KeyPressed,		// A keyboard key was pressed
 			KeyReleased,	// A keyboard key was released
 			MouseMoved,		// The mouse was moved
+			Resized,		// A resize event happend
 
 			Count			// Keep last -- Number of available event types
 		};
@@ -29,9 +36,12 @@ namespace hs
 
 		union
 		{
+			ResizeEvent resize;
 			KeyEvent key;
 			MouseMoveEvent mouseMove;
 		};
+
+		Event() {};
 	};
 
 }

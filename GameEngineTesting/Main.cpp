@@ -8,8 +8,16 @@
 //	 - Switch to the right dev-branch
 //	 - Commit stable code
 //
+//	TODO
+//	 - Implement styles for Win32Window
+//	 - Finish events for Win32Window
+//	 - Implement built-in profiling
+//	 - Implement WindowHandle
+//	 - Create a message and error system
+//	 - Implement capture mouse to window
+//
 //	CURRENT KNOWN ISSUES
-//	 - None
+//	 - None (Except that it isn't finished)
 //
 ////////////////////////////////////////////
 
@@ -18,8 +26,8 @@ const hs::uint32 HEIGHT = 720;
 
 int main(int argc, char** argv)
 {
-	hs::Window window(WIDTH, HEIGHT, L"Hello world!", 1);
-
+	hs::Window window(WIDTH, HEIGHT, L"Hello world!", hs::Window::Style::WINDOW_SHOW);
+	
 	while (window.isOpen())
 	{
 		hs::Event e;

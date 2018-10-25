@@ -20,8 +20,6 @@ namespace hs
 			void setPosition(uint32 x, uint32 y);
 			void setSize(uint32 width, uint32 height);
 			void setTitle(String title);
-			void setStyle(uint32 style);
-			void setVisible(bool visibile);
 
 			WindowHandle getSystemHandle();
 
@@ -32,10 +30,14 @@ namespace hs
 			HINSTANCE m_systemHandle;
 			HWND m_windowHandle;
 
+			void switchToFullscreen(uint32 width, uint32 height);
+
 			static std::unordered_map<HWND, Win32Window*> m_windowsCreated;
 			static Win32Window* getWindowFromhandle(HWND winHandle);
 
 			bool registerWindowClass();
+
+			void processEvent(UINT msg, WPARAM wParam, LPARAM lParam);
 
 			static LRESULT CALLBACK WndProc(HWND handle, UINT message, WPARAM wParam, LPARAM lParam);
 		};

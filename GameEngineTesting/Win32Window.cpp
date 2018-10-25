@@ -24,7 +24,6 @@ hs::priv::Win32Window::Win32Window(uint32 width, uint32 height, String title, ui
 
 	if (!m_windowHandle)
 	{
-		// TODO: Create a message and error system
 		MessageBox(NULL,
 			"Call to CreateWindowExW failed! (window)",
 			"Hillside error",
@@ -32,7 +31,19 @@ hs::priv::Win32Window::Win32Window(uint32 width, uint32 height, String title, ui
 		);
 	}
 
-	this->setVisible(true);
+	// Window visibility
+	if (style & Style::WINDOW_SHOW)
+	{
+		ShowWindow(m_windowHandle, SW_SHOW);
+	}
+	else if (style & Style::WINDOW_HIDE)
+	{
+		ShowWindow(m_windowHandle, SW_HIDE);
+	}
+	
+	// Window type
+	if (style & Style::WINDOW_FULLSCREEN)
+		this->switchToFullscreen(width, height);
 
 	// Keep track of all our windows
 	m_windowsCreated.emplace(m_windowHandle, this);
@@ -46,28 +57,17 @@ hs::priv::Win32Window::~Win32Window()
 
 void hs::priv::Win32Window::setPosition(uint32 x, uint32 y)
 {
+	// TODO
 }
 
 void hs::priv::Win32Window::setSize(uint32 width, uint32 height)
 {
+	// TODO
 }
 
 void hs::priv::Win32Window::setTitle(String title)
 {
-}
-
-void hs::priv::Win32Window::setStyle(uint32 style)
-{
-}
-
-void hs::priv::Win32Window::setVisible(bool visibile)
-{
-	if (false)
-		ShowWindow(m_windowHandle, SW_HIDE);
-	else
-		ShowWindow(m_windowHandle, SW_SHOW);
-
-	UpdateWindow(m_windowHandle);
+	// TODO
 }
 
 hs::WindowHandle hs::priv::Win32Window::getSystemHandle()
@@ -85,7 +85,7 @@ void hs::priv::Win32Window::processEvents()
 	}
 }
 
-// Properly declar and define static variable
+// Properly declare and define static variable
 std::unordered_map<HWND, hs::priv::Win32Window*> hs::priv::Win32Window::m_windowsCreated;
 
 hs::priv::Win32Window* hs::priv::Win32Window::getWindowFromhandle(HWND winHandle)
@@ -100,6 +100,33 @@ hs::priv::Win32Window* hs::priv::Win32Window::getWindowFromhandle(HWND winHandle
 	}
 
 	return nullptr;
+}
+
+void hs::priv::Win32Window::switchToFullscreen(uint32 width, uint32 height)
+{
+	DEVMODEW devMode;
+	devMode.dmSize = sizeof(devMode);
+	devMode.dmPelsWidth = width;
+	devMode.dmPelsHeight = height;
+	devMode.dmFields = DM_PELSWIDTH | DM_PELSHEIGHT;
+
+	if (ChangeDisplaySettingsW(&devMode, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL)
+	{
+		MessageBox(NULL,
+			"ChangeDisplaySettingsW failed! (window)",
+			"Hillside error",
+			MB_ICONERROR
+		);
+		return;
+	}
+
+	// Make the window flags compatible with fullscreen mode
+	SetWindowLongW(m_windowHandle, GWL_STYLE, WS_POPUP | WS_CLIPCHILDREN | WS_CLIPSIBLINGS);
+	SetWindowLongW(m_windowHandle, GWL_EXSTYLE, WS_EX_APPWINDOW);
+
+	// Resize the window so that it fits the entire screen
+	SetWindowPos(m_windowHandle, HWND_TOP, 0, 0, width, height, SWP_FRAMECHANGED);
+	ShowWindow(m_windowHandle, SW_SHOW);
 }
 
 bool hs::priv::Win32Window::registerWindowClass()
@@ -121,7 +148,6 @@ bool hs::priv::Win32Window::registerWindowClass()
 
 	if (!RegisterClassExW(&windowClassExW))
 	{
-		// TODO: Create a message and error system
 		MessageBox(NULL,
 			"Call to RegisterClassEx failed! (window)",
 			"Hillside error",
@@ -134,25 +160,70 @@ bool hs::priv::Win32Window::registerWindowClass()
 	return true;
 }
 
-LRESULT CALLBACK hs::priv::Win32Window::WndProc(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
+void hs::priv::Win32Window::processEvent(UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	// TODO: Needs revision, might not work
-	// TODO: Give window processEvents procedure
+	// TODO: https://docs.microsoft.com/sv-se/windows/desktop/winmsg/about-messages-and-message-queues
+	// https://docs.microsoft.com/sv-se/windows/desktop/inputdev/wm-keydown
+	// https://docs.microsoft.com/sv-se/windows/desktop/inputdev/wm-keyup
+	// https://docs.microsoft.com/sv-se/windows/desktop/inputdev/mouse-input-notifications
+	// TODO: WM_SIZING
+
+	switch (msg)
+	{
+	case WM_KEYDOWN:
+		// Translate key
+		break;
+	case WM_KEYUP:
+		// Translate key
+		break;
+
+	case WM_MOUSEMOVE:
+		break;
+	
+	case WM_MOUSEWHEEL:
+		break;
+	
+	case WM_LBUTTONDOWN:
+		break;
+	case WM_LBUTTONUP:
+		break;
+
+	case WM_MBUTTONDOWN:
+		break;
+	case WM_MBUTTONUP:
+		break;
+
+	case WM_RBUTTONDOWN:
+		break;
+	case WM_RBUTTONUP:
+		break;
+
+	case WM_XBUTTONDOWN:
+		break;
+	case WM_XBUTTONUP:
+		break;
+	
+	case WM_CLOSE:
+		hs::Event e;
+		e.type = hs::Event::Close;
+		this->pushEvent(e);
+		break;
+	}
+}
+
+LRESULT CALLBACK hs::priv::Win32Window::WndProc(HWND handle, UINT msg, WPARAM wParam, LPARAM lParam)
+{
 	// Warning: Do not keep this pointer around. It will be deleted when the window is.
 	hs::priv::Win32Window* window = hs::priv::Win32Window::getWindowFromhandle(handle);
 
 	if (window != nullptr)
 	{
-		if (message == WM_CLOSE)
-		{
-			hs::Event e;
-			e.type = hs::Event::Close;
-			window->pushEvent(e);
-
-			// We want to handle closing the window to not leak and lose resources
-			return 0;
-		}
+		window->processEvent(msg, wParam, lParam);
 	}
-	
-	return DefWindowProcW(handle, message, wParam, lParam);
+
+	// We don't want the OS to close our window, we do that
+	if (msg == WM_CLOSE)
+		return 0;
+
+	return DefWindowProcW(handle, msg, wParam, lParam);
 }

@@ -19,6 +19,13 @@ namespace hs
 		class WindowImpl : NonCopyable
 		{
 		public:
+			enum Style
+			{
+				WINDOW_HIDE			= 0x01,
+				WINDOW_SHOW			= 0x02,
+				WINDOW_FULLSCREEN	= 0x04
+			};
+
 			// Don't forget to delete it!
 			static WindowImpl* create(uint32 width, uint32 height, String title, uint32 style);
 
@@ -28,8 +35,6 @@ namespace hs
 			virtual void setPosition(uint32 x, uint32 y) = 0;
 			virtual void setSize(uint32 width, uint32 height) = 0;
 			virtual void setTitle(String title) = 0;
-			virtual void setStyle(uint32 style) = 0;
-			virtual void setVisible(bool visibile) = 0;
 
 			virtual WindowHandle getSystemHandle() = 0;
 
