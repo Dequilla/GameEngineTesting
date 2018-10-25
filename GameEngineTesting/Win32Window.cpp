@@ -187,55 +187,55 @@ void hs::priv::Win32Window::processEvent(UINT msg, WPARAM wParam, LPARAM lParam)
 	
 	case WM_LBUTTONUP:
 		e.type = Event::MouseReleased;
-		e.mouse.button.code = Event::MouseButton::LEFT;
+		e.mouseButton.code = Event::MouseButton::LEFT;
 		this->pushEvent(e);
 		break;
 
 	case WM_MBUTTONUP:
 		e.type = Event::MouseReleased;
-		e.mouse.button.code = Event::MouseButton::MIDDLE;
+		e.mouseButton.code = Event::MouseButton::MIDDLE;
 		this->pushEvent(e);
 		break;
 
 	case WM_RBUTTONUP:
 		e.type = Event::MouseReleased;
-		e.mouse.button.code = Event::MouseButton::RIGHT;
+		e.mouseButton.code = Event::MouseButton::RIGHT;
 		this->pushEvent(e);
 		break;
 
 	case WM_XBUTTONUP:
 		e.type = Event::MouseReleased;
 		if(GET_XBUTTON_WPARAM(wParam) == XBUTTON1)
-			e.mouse.button.code = Event::MouseButton::EXTRA1;
+			e.mouseButton.code = Event::MouseButton::EXTRA1;
 		else
-			e.mouse.button.code = Event::MouseButton::EXTRA2;
+			e.mouseButton.code = Event::MouseButton::EXTRA2;
 		this->pushEvent(e);
 		break;
 
 	case WM_LBUTTONDOWN:
 		e.type = Event::MousePressed;
-		e.mouse.button.code = Event::MouseButton::LEFT;
+		e.mouseButton.code = Event::MouseButton::LEFT;
 		this->pushEvent(e);
 		break;
 
 	case WM_MBUTTONDOWN:
 		e.type = Event::MousePressed;
-		e.mouse.button.code = Event::MouseButton::MIDDLE;
+		e.mouseButton.code = Event::MouseButton::MIDDLE;
 		this->pushEvent(e);
 		break;
 
 	case WM_RBUTTONDOWN:
 		e.type = Event::MousePressed;
-		e.mouse.button.code = Event::MouseButton::RIGHT;
+		e.mouseButton.code = Event::MouseButton::RIGHT;
 		this->pushEvent(e);
 		break;
 
 	case WM_XBUTTONDOWN:
 		e.type = Event::MousePressed;
 		if (GET_XBUTTON_WPARAM(wParam) == XBUTTON1)
-			e.mouse.button.code = Event::MouseButton::EXTRA1;
+			e.mouseButton.code = Event::MouseButton::EXTRA1;
 		else
-			e.mouse.button.code = Event::MouseButton::EXTRA2;
+			e.mouseButton.code = Event::MouseButton::EXTRA2;
 		this->pushEvent(e);
 		break;
 

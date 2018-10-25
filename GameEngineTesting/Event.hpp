@@ -54,12 +54,8 @@ namespace hs
 		{
 			ResizeEvent resize;
 			KeyEvent key;
-
-			struct Mouse
-			{
-				MouseMoveEvent move;
-				MouseButtonEvent button;
-			} mouse;
+			MouseMoveEvent mouseMove;
+			MouseButtonEvent mouseButton;
 		};
 
 		Event() {};

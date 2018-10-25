@@ -39,13 +39,13 @@ int main(int argc, char** argv)
 			if (e.type == hs::Event::MousePressed)
 			{
 				std::cout << "Pressed" << std::endl;
-				if (e.mouse.button.code == hs::Event::MouseButton::LEFT)
+				if (e.mouseButton.code == hs::Event::MouseButton::LEFT)
 					std::cout << "Extra 1" << std::endl;
 			}
 			else if (e.type == hs::Event::MouseReleased)
 			{
 				std::cout << "Released" << std::endl;
-				if (e.mouse.button.code == hs::Event::MouseButton::LEFT)
+				if (e.mouseButton.code == hs::Event::MouseButton::LEFT)
 					std::cout << "Extra 1" << std::endl;
 			}
 		}
