@@ -1,4 +1,5 @@
 #include "Win32Window.hpp"
+#include "windowsx.h"
 
 hs::priv::Win32Window::Win32Window(uint32 width, uint32 height, String title, uint32 style)
 {
@@ -188,18 +189,30 @@ void hs::priv::Win32Window::processEvent(UINT msg, WPARAM wParam, LPARAM lParam)
 	case WM_LBUTTONUP:
 		e.type = Event::MouseReleased;
 		e.mouseButton.code = Event::MouseButton::LEFT;
+		e.mouseButton.ctrl = (wParam & MK_CONTROL);
+		e.mouseButton.shift = (wParam & MK_SHIFT);
+		e.mouseButton.x = GET_X_LPARAM(lParam);
+		e.mouseButton.y = GET_Y_LPARAM(lParam);
 		this->pushEvent(e);
 		break;
 
 	case WM_MBUTTONUP:
 		e.type = Event::MouseReleased;
 		e.mouseButton.code = Event::MouseButton::MIDDLE;
+		e.mouseButton.ctrl = (wParam & MK_CONTROL);
+		e.mouseButton.shift = (wParam & MK_SHIFT);
+		e.mouseButton.x = GET_X_LPARAM(lParam);
+		e.mouseButton.y = GET_Y_LPARAM(lParam);
 		this->pushEvent(e);
 		break;
 
 	case WM_RBUTTONUP:
 		e.type = Event::MouseReleased;
 		e.mouseButton.code = Event::MouseButton::RIGHT;
+		e.mouseButton.ctrl = (wParam & MK_CONTROL);
+		e.mouseButton.shift = (wParam & MK_SHIFT);
+		e.mouseButton.x = GET_X_LPARAM(lParam);
+		e.mouseButton.y = GET_Y_LPARAM(lParam);
 		this->pushEvent(e);
 		break;
 
@@ -209,24 +222,40 @@ void hs::priv::Win32Window::processEvent(UINT msg, WPARAM wParam, LPARAM lParam)
 			e.mouseButton.code = Event::MouseButton::EXTRA1;
 		else
 			e.mouseButton.code = Event::MouseButton::EXTRA2;
+		e.mouseButton.ctrl = (wParam & MK_CONTROL);
+		e.mouseButton.shift = (wParam & MK_SHIFT);
+		e.mouseButton.x = GET_X_LPARAM(lParam);
+		e.mouseButton.y = GET_Y_LPARAM(lParam);
 		this->pushEvent(e);
 		break;
 
 	case WM_LBUTTONDOWN:
 		e.type = Event::MousePressed;
 		e.mouseButton.code = Event::MouseButton::LEFT;
+		e.mouseButton.ctrl = (wParam & MK_CONTROL);
+		e.mouseButton.shift = (wParam & MK_SHIFT);
+		e.mouseButton.x = GET_X_LPARAM(lParam);
+		e.mouseButton.y = GET_Y_LPARAM(lParam);
 		this->pushEvent(e);
 		break;
 
 	case WM_MBUTTONDOWN:
 		e.type = Event::MousePressed;
 		e.mouseButton.code = Event::MouseButton::MIDDLE;
+		e.mouseButton.ctrl = (wParam & MK_CONTROL);
+		e.mouseButton.shift = (wParam & MK_SHIFT);
+		e.mouseButton.x = GET_X_LPARAM(lParam);
+		e.mouseButton.y = GET_Y_LPARAM(lParam);
 		this->pushEvent(e);
 		break;
 
 	case WM_RBUTTONDOWN:
 		e.type = Event::MousePressed;
 		e.mouseButton.code = Event::MouseButton::RIGHT;
+		e.mouseButton.ctrl = (wParam & MK_CONTROL);
+		e.mouseButton.shift = (wParam & MK_SHIFT);
+		e.mouseButton.x = GET_X_LPARAM(lParam);
+		e.mouseButton.y = GET_Y_LPARAM(lParam);
 		this->pushEvent(e);
 		break;
 
@@ -236,6 +265,10 @@ void hs::priv::Win32Window::processEvent(UINT msg, WPARAM wParam, LPARAM lParam)
 			e.mouseButton.code = Event::MouseButton::EXTRA1;
 		else
 			e.mouseButton.code = Event::MouseButton::EXTRA2;
+		e.mouseButton.ctrl = (wParam & MK_CONTROL);
+		e.mouseButton.shift = (wParam & MK_SHIFT);
+		e.mouseButton.x = GET_X_LPARAM(lParam);
+		e.mouseButton.y = GET_Y_LPARAM(lParam);
 		this->pushEvent(e);
 		break;
 

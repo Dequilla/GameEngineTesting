@@ -34,7 +34,12 @@ namespace hs
 		struct MouseButtonEvent
 		{
 			MouseButton code;
-			// ctrl, alt, sys pressed etc
+			bool ctrl = false;
+			bool shift = false;
+			bool alt = false;
+			bool sys = false;
+			uint32 x;
+			uint32 y;
 		};
 
 		enum EventType
