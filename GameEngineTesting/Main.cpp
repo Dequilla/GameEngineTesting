@@ -15,6 +15,7 @@
 //	 - Implement WindowHandle
 //	 - Create a message and error system
 //	 - Implement capture mouse to window
+//	 - Add folder structure to the project(dont want all the files in the same folder)
 //
 //	CURRENT KNOWN ISSUES
 //	 - None (Except that it isn't finished)
