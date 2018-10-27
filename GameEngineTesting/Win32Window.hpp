@@ -33,7 +33,7 @@ namespace hs
 			void switchToFullscreen(uint32 width, uint32 height);
 
 			static std::unordered_map<HWND, Win32Window*> m_windowsCreated;
-			static Win32Window* getWindowFromhandle(HWND winHandle);
+			static Win32Window* getWindowFromHandle(HWND winHandle);
 
 			bool registerWindowClass();
 

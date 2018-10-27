@@ -90,7 +90,7 @@ void hs::priv::Win32Window::processEvents()
 // Properly declare and define static variable
 std::unordered_map<HWND, hs::priv::Win32Window*> hs::priv::Win32Window::m_windowsCreated;
 
-hs::priv::Win32Window* hs::priv::Win32Window::getWindowFromhandle(HWND winHandle)
+hs::priv::Win32Window* hs::priv::Win32Window::getWindowFromHandle(HWND winHandle)
 {
 	try
 	{
