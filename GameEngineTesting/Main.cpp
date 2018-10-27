@@ -37,18 +37,10 @@ int main(int argc, char** argv)
 			if (e.type == hs::Event::Close)
 				window.close();
 
-			if (e.type == hs::Event::MousePressed)
+			if (e.type == hs::Event::Resized)
 			{
-				std::cout << "Pressed" << std::endl;
-				if (e.mouseButton.code == hs::Event::MouseButton::LEFT)
-					std::cout << "Mouse pos: " << e.mouseButton.x << "," << e.mouseButton.y << (e.mouseButton.shift ? " shift helt" : "") << std::endl;
-				
-			}
-			else if (e.type == hs::Event::MouseReleased)
-			{
-				std::cout << "Released" << std::endl;
-				if (e.mouseButton.code == hs::Event::MouseButton::LEFT)
-					std::cout << "Mouse pos: " << e.mouseButton.x << "," << e.mouseButton.y << (e.mouseButton.shift ? " shift helt" : "") << std::endl;
+				std::cout << "Width: " << e.size.width << std::endl;
+				std::cout << "Height: " << e.size.height << std::endl;
 			}
 		}
 	}

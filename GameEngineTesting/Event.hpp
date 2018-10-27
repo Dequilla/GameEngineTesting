@@ -6,12 +6,10 @@ namespace hs
 	struct Event
 	{
 	public:
-		struct ResizeEvent
+		struct SizeEvent
 		{
-			bool isBeingResized = false;
-			
-			uint32 width = 0;
-			uint32 height = 0;
+			uint32 width;
+			uint32 height;
 		};
 
 		struct KeyEvent
@@ -20,6 +18,15 @@ namespace hs
 
 		struct MouseMoveEvent
 		{
+			int32 x;
+			int32 y;
+		};
+
+		struct MouseWheelEvent
+		{
+			int32 x;
+			int32 y;
+			float delta;
 		};
 
 		enum MouseButton
@@ -34,12 +41,8 @@ namespace hs
 		struct MouseButtonEvent
 		{
 			MouseButton code;
-			bool ctrl = false;
-			bool shift = false;
-			bool alt = false;
-			bool sys = false;
-			uint32 x;
-			uint32 y;
+			int32 x;
+			int32 y;
 		};
 
 		enum EventType
@@ -48,6 +51,7 @@ namespace hs
 			KeyPressed,		// A keyboard key was pressed
 			KeyReleased,	// A keyboard key was released
 			MouseMoved,		// The mouse was moved
+			MouseWheel,		// Mouse wheel was rotated/moved
 			MousePressed,	// A mouse button was pressed
 			MouseReleased,	// A mouse button was released
 			Resized,		// A resize event happend
@@ -57,9 +61,10 @@ namespace hs
 
 		union
 		{
-			ResizeEvent resize;
+			SizeEvent size;
 			KeyEvent key;
 			MouseMoveEvent mouseMove;
+			MouseWheelEvent mouseWheel;
 			MouseButtonEvent mouseButton;
 		};
 
