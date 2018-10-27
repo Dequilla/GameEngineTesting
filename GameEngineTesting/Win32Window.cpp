@@ -55,6 +55,7 @@ hs::priv::Win32Window::~Win32Window()
 {
 	// This window is being deleted, remove from our tracked windows.
 	hs::priv::Win32Window::m_windowsCreated.erase(m_windowHandle);
+	DestroyWindow(m_windowHandle);
 }
 
 void hs::priv::Win32Window::setPosition(uint32 x, uint32 y)
@@ -131,32 +132,41 @@ void hs::priv::Win32Window::switchToFullscreen(uint32 width, uint32 height)
 	ShowWindow(m_windowHandle, SW_SHOW);
 }
 
+// Properly declare and define static variable
+bool hs::priv::Win32Window::m_windowClassRegistered = false;
+
 bool hs::priv::Win32Window::registerWindowClass()
 {
-	WNDCLASSEXW windowClassExW;
-
-	windowClassExW.cbSize = sizeof(WNDCLASSEXW);
-	windowClassExW.style = CS_HREDRAW | CS_VREDRAW;
-	windowClassExW.lpfnWndProc = this->WndProc;
-	windowClassExW.cbClsExtra = 0;
-	windowClassExW.cbWndExtra = 0;
-	windowClassExW.hInstance = m_systemHandle;
-	windowClassExW.hIcon = LoadIcon(m_systemHandle, MAKEINTRESOURCE(IDI_APPLICATION));
-	windowClassExW.hCursor = LoadCursor(NULL, IDC_ARROW);
-	windowClassExW.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-	windowClassExW.lpszMenuName = NULL;
-	windowClassExW.lpszClassName = this->className;
-	windowClassExW.hIconSm = LoadIcon(m_systemHandle, MAKEINTRESOURCE(IDI_APPLICATION));
-
-	if (!RegisterClassExW(&windowClassExW))
+	// Only register once
+	if (!m_windowClassRegistered)
 	{
-		MessageBox(NULL,
-			"Call to RegisterClassEx failed! (window)",
-			"Hillside error",
-			MB_ICONERROR
-		);
+		WNDCLASSEXW windowClassExW;
 
-		return false;
+		windowClassExW.cbSize = sizeof(WNDCLASSEXW);
+		windowClassExW.style = CS_HREDRAW | CS_VREDRAW;
+		windowClassExW.lpfnWndProc = this->WndProc;
+		windowClassExW.cbClsExtra = 0;
+		windowClassExW.cbWndExtra = 0;
+		windowClassExW.hInstance = m_systemHandle;
+		windowClassExW.hIcon = LoadIcon(m_systemHandle, MAKEINTRESOURCE(IDI_APPLICATION));
+		windowClassExW.hCursor = LoadCursor(NULL, IDC_ARROW);
+		windowClassExW.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+		windowClassExW.lpszMenuName = NULL;
+		windowClassExW.lpszClassName = this->className;
+		windowClassExW.hIconSm = LoadIcon(m_systemHandle, MAKEINTRESOURCE(IDI_APPLICATION));
+
+		if (!RegisterClassExW(&windowClassExW))
+		{
+			MessageBox(NULL,
+				"Call to RegisterClassEx failed! (window)",
+				"Hillside error",
+				MB_ICONERROR
+			);
+
+			return false;
+		}
+
+		m_windowClassRegistered = true;
 	}
 
 	return true;
@@ -283,7 +293,7 @@ void hs::priv::Win32Window::processEvent(UINT msg, WPARAM wParam, LPARAM lParam)
 LRESULT CALLBACK hs::priv::Win32Window::WndProc(HWND handle, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	// Warning: Do not keep this pointer around. It will be deleted when the window is.
-	hs::priv::Win32Window* window = hs::priv::Win32Window::getWindowFromhandle(handle);
+	hs::priv::Win32Window* window = hs::priv::Win32Window::getWindowFromHandle(handle);
 
 	if (window != nullptr)
 	{

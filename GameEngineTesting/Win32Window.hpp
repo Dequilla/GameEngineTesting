@@ -35,6 +35,7 @@ namespace hs
 			static std::unordered_map<HWND, Win32Window*> m_windowsCreated;
 			static Win32Window* getWindowFromHandle(HWND winHandle);
 
+			static bool m_windowClassRegistered;
 			bool registerWindowClass();
 
 			void processEvent(UINT msg, WPARAM wParam, LPARAM lParam);
