@@ -9,13 +9,13 @@
 //	 - Commit stable code
 //
 //	TODO
-//	 - Implement styles for Win32Window
 //	 - Finish events for Win32Window
 //	 - Implement built-in profiling
 //	 - Implement WindowHandle
 //	 - Create a message and error system
 //	 - Implement capture mouse to window
 //	 - Add folder structure to the project(dont want all the files in the same folder)
+//	 - Possible make a include folder and keep all header files in there and cpp files only in the src folder
 //
 //	CURRENT KNOWN ISSUES
 //	 - None (Except that it isn't finished)
