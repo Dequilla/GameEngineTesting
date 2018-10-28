@@ -33,51 +33,54 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="String.cpp">
+    <ClCompile Include="src\System\String.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
-    <ClCompile Include="WindowImpl.cpp">
+    <ClCompile Include="src\Window\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Window\WindowImpl.cpp">
       <Filter>Source Files\Window</Filter>
     </ClCompile>
-    <ClCompile Include="Win32Window.cpp">
+    <ClCompile Include="src\Window\WindowHandle.cpp">
+      <Filter>Source Files\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Window\Win32\Win32Window.cpp">
       <Filter>Source Files\Window\Win32</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
+    <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="NonCopyable.hpp">
+    <ClInclude Include="src\System\NonCopyable.hpp">
       <Filter>Header Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="Win32Window.hpp">
-      <Filter>Header Files\Window\Win32</Filter>
-    </ClInclude>
-    <ClInclude Include="String.hpp">
+    <ClInclude Include="src\System\OS.hpp">
       <Filter>Header Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="WindowHandle.hpp">
-      <Filter>Header Files\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="OS.hpp">
+    <ClInclude Include="src\System\String.hpp">
       <Filter>Header Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="System.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Window.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Types.hpp">
+    <ClInclude Include="src\System\Types.hpp">
       <Filter>Source Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="WindowImpl.hpp">
+    <ClInclude Include="src\System\System.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Window\Window.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Window\WindowImpl.hpp">
       <Filter>Header Files\Window</Filter>
     </ClInclude>
-    <ClInclude Include="Event.hpp">
+    <ClInclude Include="src\Window\WindowHandle.hpp">
+      <Filter>Header Files\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Window\Win32\Win32Window.hpp">
+      <Filter>Header Files\Window\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Window\Event.hpp">
       <Filter>Header Files\Window</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,9 +1,10 @@
 #pragma once
+#include "../Config.hpp"
 
 namespace hs
 {
 
-	class NonCopyable
+	class HILLSIDE_API NonCopyable
 	{
 	protected:
 		// Define explicit default constructor since

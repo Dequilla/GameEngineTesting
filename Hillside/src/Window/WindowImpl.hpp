@@ -1,14 +1,12 @@
 #pragma once
 #include <queue>
 
-#include "WindowHandle.hpp"
-#include "NonCopyable.hpp"
-#include "String.hpp"
-#include "Types.hpp"
-#include "Event.hpp"
-#include "OS.hpp"
+#include "../System/NonCopyable.hpp"
+#include "../System/String.hpp"
+#include "../Config.hpp"
 
-// Contains a base/abstract of a window class which is implemented specifically for each platform
+#include "WindowHandle.hpp"
+#include "Event.hpp"
 
 namespace hs
 {
@@ -16,9 +14,16 @@ namespace hs
 	namespace priv
 	{
 
-		class WindowImpl : NonCopyable
+		class HILLSIDE_API WindowImpl : NonCopyable
 		{
 		public:
+			enum Style
+			{
+				WINDOW_HIDE			= 0x01,
+				WINDOW_SHOW			= 0x02,
+				WINDOW_FULLSCREEN	= 0x04
+			};
+
 			// Don't forget to delete it!
 			static WindowImpl* create(uint32 width, uint32 height, String title, uint32 style);
 
@@ -28,8 +33,11 @@ namespace hs
 			virtual void setPosition(uint32 x, uint32 y) = 0;
 			virtual void setSize(uint32 width, uint32 height) = 0;
 			virtual void setTitle(String title) = 0;
-			virtual void setStyle(uint32 style) = 0;
-			virtual void setVisible(bool visibile) = 0;
+
+			virtual uint32 getWidth() = 0;
+			virtual uint32 getHeight() = 0;
+			virtual int32 getPosX() = 0;
+			virtual int32 getPosY() = 0;
 
 			virtual WindowHandle getSystemHandle() = 0;
 
