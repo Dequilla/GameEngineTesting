@@ -8,7 +8,7 @@ namespace hs
 {
 	namespace priv
 	{
-		class Win32Window : public WindowImpl
+		class HILLSIDE_API Win32Window : public WindowImpl
 		{
 		public:
 			const wchar_t* className = L"Hillside_Window";

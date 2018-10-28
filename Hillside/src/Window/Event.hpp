@@ -3,7 +3,7 @@
 namespace hs
 {
 
-	struct Event
+	struct HILLSIDE_API Event
 	{
 	public:
 		struct SizeEvent

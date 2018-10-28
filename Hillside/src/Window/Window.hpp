@@ -5,7 +5,7 @@
 namespace hs
 {
 
-	class Window
+	class HILLSIDE_API Window
 	{
 		hs::priv::WindowImpl* m_implementation = nullptr;
 

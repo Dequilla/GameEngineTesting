@@ -10,7 +10,7 @@
 namespace hs
 {
 
-	class WindowHandle
+	class HILLSIDE_API WindowHandle
 	{
 #ifdef HILLSIDE_OS_WINDOWS
 		HWND m_windowHandle;

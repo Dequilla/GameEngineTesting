@@ -1,12 +1,13 @@
 #pragma once
 #include <string>
 
+#include "OS.hpp"
 #include "Types.hpp"
 
 namespace hs
 {
 
-	class String
+	class HILLSIDE_API String
 	{
 		std::wstring m_string;
 

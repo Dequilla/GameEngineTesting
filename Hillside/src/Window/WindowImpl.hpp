@@ -15,7 +15,7 @@ namespace hs
 	namespace priv
 	{
 
-		class WindowImpl : NonCopyable
+		class HILLSIDE_API WindowImpl : NonCopyable
 		{
 		public:
 			enum Style
