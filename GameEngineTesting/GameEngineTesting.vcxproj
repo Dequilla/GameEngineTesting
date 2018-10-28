@@ -130,24 +130,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="String.cpp" />
-    <ClCompile Include="Win32Window.cpp" />
-    <ClCompile Include="Window.cpp" />
-    <ClCompile Include="WindowHandle.cpp" />
-    <ClCompile Include="WindowImpl.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\System\String.cpp" />
+    <ClCompile Include="src\Window\Win32\Win32Window.cpp" />
+    <ClCompile Include="src\Window\Window.cpp" />
+    <ClCompile Include="src\Window\WindowHandle.cpp" />
+    <ClCompile Include="src\Window\WindowImpl.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Event.hpp" />
-    <ClInclude Include="NonCopyable.hpp" />
-    <ClInclude Include="OS.hpp" />
-    <ClInclude Include="String.hpp" />
-    <ClInclude Include="System.hpp" />
-    <ClInclude Include="Types.hpp" />
-    <ClInclude Include="Window.hpp" />
-    <ClInclude Include="WindowImpl.hpp" />
-    <ClInclude Include="Win32Window.hpp" />
-    <ClInclude Include="WindowHandle.hpp" />
+    <ClInclude Include="src\Window\Event.hpp" />
+    <ClInclude Include="src\System\NonCopyable.hpp" />
+    <ClInclude Include="src\System\OS.hpp" />
+    <ClInclude Include="src\System\String.hpp" />
+    <ClInclude Include="src\System\System.hpp" />
+    <ClInclude Include="src\System\Types.hpp" />
+    <ClInclude Include="src\Window\Window.hpp" />
+    <ClInclude Include="src\Window\WindowImpl.hpp" />
+    <ClInclude Include="src\Window\Win32\Win32Window.hpp" />
+    <ClInclude Include="src\Window\WindowHandle.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

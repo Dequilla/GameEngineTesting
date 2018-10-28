@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "Window.hpp"
+#include "Window/Window.hpp"
 
 ////////////////////////////////////////////
 //

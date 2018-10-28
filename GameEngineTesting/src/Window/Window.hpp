@@ -2,8 +2,6 @@
 #include "WindowImpl.hpp"
 #include "Event.hpp"
 
-// The class used by the user to create a platform specific window without dealing with platform specific code
-
 namespace hs
 {
 

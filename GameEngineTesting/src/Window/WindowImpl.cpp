@@ -1,7 +1,7 @@
 #include "WindowImpl.hpp"
 
 #ifdef HILLSIDE_OS_WINDOWS
-	#include "Win32Window.hpp"
+	#include "Win32/Win32Window.hpp"
 	typedef hs::priv::Win32Window WindowType;
 #endif
 

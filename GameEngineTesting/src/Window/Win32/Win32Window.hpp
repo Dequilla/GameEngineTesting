@@ -2,7 +2,7 @@
 #include <Windows.h>
 #include <unordered_map>
 
-#include "WindowImpl.hpp"
+#include "../WindowImpl.hpp"
 
 namespace hs
 {

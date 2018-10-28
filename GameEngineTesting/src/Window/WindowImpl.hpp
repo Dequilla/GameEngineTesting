@@ -1,14 +1,13 @@
 #pragma once
 #include <queue>
 
-#include "WindowHandle.hpp"
-#include "NonCopyable.hpp"
-#include "String.hpp"
-#include "Types.hpp"
-#include "Event.hpp"
-#include "OS.hpp"
+#include "../System/NonCopyable.hpp"
+#include "../System/String.hpp"
+#include "../System/Types.hpp"
+#include "../System/OS.hpp"
 
-// Contains a base/abstract of a window class which is implemented specifically for each platform
+#include "WindowHandle.hpp"
+#include "Event.hpp"
 
 namespace hs
 {
