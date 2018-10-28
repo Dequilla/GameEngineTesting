@@ -3,8 +3,7 @@
 
 #include "../System/NonCopyable.hpp"
 #include "../System/String.hpp"
-#include "../System/Types.hpp"
-#include "../System/OS.hpp"
+#include "../Config.hpp"
 
 #include "WindowHandle.hpp"
 #include "Event.hpp"
@@ -34,6 +33,11 @@ namespace hs
 			virtual void setPosition(uint32 x, uint32 y) = 0;
 			virtual void setSize(uint32 width, uint32 height) = 0;
 			virtual void setTitle(String title) = 0;
+
+			virtual uint32 getWidth() = 0;
+			virtual uint32 getHeight() = 0;
+			virtual int32 getPosX() = 0;
+			virtual int32 getPosY() = 0;
 
 			virtual WindowHandle getSystemHandle() = 0;
 

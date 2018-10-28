@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include <Window/Window.hpp>
+#include <Window/Keyboard.hpp>
 
 ////////////////////////////////////////////
 //
@@ -16,6 +17,7 @@
 //	 - Implement capture mouse to window
 //	 - Add folder structure to the project(dont want all the files in the same folder)
 //	 - Possible make a include folder and keep all header files in there and cpp files only in the src folder
+//	 - Keyboard no repeat
 //
 //	CURRENT KNOWN ISSUES
 //	 - None (Except that it isn't finished)
@@ -37,10 +39,23 @@ int main(int argc, char** argv)
 			if (e.type == hs::Event::Close)
 				window.close();
 
-			if (e.type == hs::Event::Resized)
+			if (e.type == hs::Event::KeyPressed)
 			{
-				std::cout << "Width: " << e.size.width << std::endl;
-				std::cout << "Height: " << e.size.height << std::endl;
+				if (e.key.code == hs::Keyboard::A)
+				{
+					window.setSize(320, 160);
+					window.setPosition(1337, 200);
+					window.setTitle(L"NEW");
+				}
+			}
+			if (e.type == hs::Event::KeyReleased)
+			{
+				if (e.key.code == hs::Keyboard::A)
+				{
+					window.setSize(WIDTH, HEIGHT);
+					window.setPosition(0, 0);
+					window.setTitle(L"Hello world!");
+				}
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 #pragma once
-#include "OS.hpp"
+#include "../Config.hpp"
 
 namespace hs
 {

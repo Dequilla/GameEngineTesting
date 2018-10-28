@@ -3,6 +3,7 @@
 #include <unordered_map>
 
 #include "../WindowImpl.hpp"
+#include "../Keyboard.hpp"
 
 namespace hs
 {
@@ -20,6 +21,11 @@ namespace hs
 			void setPosition(uint32 x, uint32 y);
 			void setSize(uint32 width, uint32 height);
 			void setTitle(String title);
+
+			uint32 getWidth();
+			uint32 getHeight();
+			int32 getPosX();
+			int32 getPosY();
 
 			WindowHandle getSystemHandle();
 
@@ -41,6 +47,8 @@ namespace hs
 			void processEvent(UINT msg, WPARAM wParam, LPARAM lParam);
 
 			static LRESULT CALLBACK WndProc(HWND handle, UINT message, WPARAM wParam, LPARAM lParam);
+
+			Keyboard::Key translateVirtualKeycode(WPARAM key, LPARAM lParam);
 		};
 
 		

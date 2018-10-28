@@ -135,7 +135,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\System\String.cpp" />
     <ClCompile Include="src\Window\Win32\Win32Window.cpp" />
     <ClCompile Include="src\Window\Window.cpp" />
@@ -143,12 +142,12 @@
     <ClCompile Include="src\Window\WindowImpl.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Config.hpp" />
     <ClInclude Include="src\Window\Event.hpp" />
     <ClInclude Include="src\System\NonCopyable.hpp" />
-    <ClInclude Include="src\System\OS.hpp" />
     <ClInclude Include="src\System\String.hpp" />
     <ClInclude Include="src\System\System.hpp" />
-    <ClInclude Include="src\System\Types.hpp" />
+    <ClInclude Include="src\Window\Keyboard.hpp" />
     <ClInclude Include="src\Window\Window.hpp" />
     <ClInclude Include="src\Window\WindowImpl.hpp" />
     <ClInclude Include="src\Window\Win32\Win32Window.hpp" />

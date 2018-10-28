@@ -1,8 +1,7 @@
 #pragma once
 #include <string>
 
-#include "OS.hpp"
-#include "Types.hpp"
+#include "../Config.hpp"
 
 namespace hs
 {

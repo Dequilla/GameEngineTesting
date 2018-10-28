@@ -1,4 +1,6 @@
 #pragma once
+#include "../Config.hpp"
+#include "Keyboard.hpp"
 
 namespace hs
 {
@@ -14,6 +16,11 @@ namespace hs
 
 		struct KeyEvent
 		{
+			Keyboard::Key code;
+			bool alt;
+			bool control;
+			bool shift;
+			bool system;
 		};
 
 		struct MouseMoveEvent
