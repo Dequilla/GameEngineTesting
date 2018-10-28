@@ -75,7 +75,7 @@ void hs::priv::Win32Window::setTitle(String title)
 
 hs::WindowHandle hs::priv::Win32Window::getSystemHandle()
 {
-	return WindowHandle();
+	return WindowHandle(m_windowHandle);
 }
 
 void hs::priv::Win32Window::processEvents()

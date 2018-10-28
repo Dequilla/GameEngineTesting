@@ -42,13 +42,6 @@ int main(int argc, char** argv)
 				std::cout << "Width: " << e.size.width << std::endl;
 				std::cout << "Height: " << e.size.height << std::endl;
 			}
-			else if (e.type == hs::Event::EventType::MousePressed)
-			{
-				if (e.mouseButton.code == hs::Event::MouseButton::RIGHT)
-				{
-					window.create(WIDTH, HEIGHT, L"Hello world!", hs::Window::Style::WINDOW_FULLSCREEN);
-				}
-			}
 		}
 	}
 }

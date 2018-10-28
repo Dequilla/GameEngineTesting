@@ -119,6 +119,7 @@
     <ClCompile Include="String.cpp" />
     <ClCompile Include="Win32Window.cpp" />
     <ClCompile Include="Window.cpp" />
+    <ClCompile Include="WindowHandle.cpp" />
     <ClCompile Include="WindowImpl.cpp" />
   </ItemGroup>
   <ItemGroup>
